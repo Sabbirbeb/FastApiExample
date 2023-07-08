@@ -1,7 +1,7 @@
 # syntax=docker/dockerfile:1
 # FROM debian:11-slim
 
-FROM python:3.8-slim-buster
+FROM python:3.9-slim-buster
 
 WORKDIR /code
 
