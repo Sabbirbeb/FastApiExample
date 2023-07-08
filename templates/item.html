@@ -3,41 +3,12 @@
     <title>Item Details</title>
     <link href="{{ url_for('static', path='/styles.css') }}" rel="stylesheet">
 
+    <script type="text/javascript" src="/scripts/scripts.js"></script>
+
     <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
     <meta http-equiv="Pragma" content="no-cache" />
     <meta http-equiv="Expires" content="0" />
 
-    <script>
-        var urlParams;
-        (window.onpopstate = function () {
-            var match,
-                pl     = /\+/g,  // Regex for replacing addition symbol with a space
-                search = /([^&=]+)=?([^&]*)/g,
-                decode = function (s) { return decodeURIComponent(s.replace(pl, " ")); },
-                query  = window.location.search.substring(1);
-        
-            urlParams = {};
-            while (match = search.exec(query))
-            urlParams[decode(match[1])] = decode(match[2]);
-        })();
-
-        function myFunction(q = 0) {
-            //window.alert((q).toString())
-            const a = urlParams['q']
-            try {
-                document.getElementById("demo").innerHTML = a * a;
-            }
-            catch (exception) {
-                console.log(exception)
-                document.getElementById("demo").innerHTML = myFunction.name;
-            }
-        }
-
-        function reset() {
-            document.getElementById("demo").innerHTML = reset.name;
-        }
-
-    </script>
 </head>
 <body>
     <h1>Item ID: {{ item_id }}</h1>
