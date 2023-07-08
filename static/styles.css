@@ -1,3 +1,9 @@
 h1 {
-    color: green;
+    color: rgb(109, 51, 71);
+}
+
+button {
+    color: crimson;
+    height: 40px;
+    width: 75px;
 }
