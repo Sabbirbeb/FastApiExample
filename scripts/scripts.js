@@ -25,3 +25,16 @@ function myFunction(q = 0) {
 function reset() {
     document.getElementById("demo").innerHTML = reset.name;
 }
+
+function get_from_input() {
+    fname = document.getElementById('fname').value
+    lname = document.getElementById('lname').value
+    if (!fname){
+        fname = 'Input your fname'
+    }
+    if (!lname){
+        lname = 'Input your lname'
+    }
+    document.getElementById("fname_out").innerHTML = fname
+    document.getElementById("lname_out").innerHTML = lname
+}
