@@ -13,5 +13,6 @@ COPY ./app /code/app
 COPY ./static /code/static
 COPY ./scripts /code/scripts
 COPY ./templates /code/templates
+COPY ./assets /code/assets
 
 CMD ["uvicorn", "app.main:app", "--proxy-headers", "--host", "0.0.0.0", "--port", "8080"]

@@ -1,0 +1,27 @@
+h1 {
+    color: rgb(109, 51, 71);
+}
+
+button {
+    color: crimson;
+    height: 40px;
+    width: 75px;
+}
+
+p {
+    animation-duration: 3s;
+    animation-name: slidein;
+    color: deeppink;
+  }
+  
+  @keyframes slidein {
+    from {
+      margin-left: 100%;
+      width: 300%;
+    }
+  
+    to {
+      margin-left: 0%;
+      width: 100%;
+    }
+  }

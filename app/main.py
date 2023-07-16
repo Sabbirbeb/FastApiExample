@@ -9,6 +9,7 @@ app = FastAPI()
 
 app.mount("/static", StaticFiles(directory="static"), name="static")
 app.mount("/scripts", StaticFiles(directory="scripts"), name="scripts")
+app.mount("/assets", StaticFiles(directory="assets"), name="assets")
 
 templates = Jinja2Templates(directory="templates")
 
@@ -20,6 +21,10 @@ class Item(BaseModel):
 @app.get("/", response_class=HTMLResponse)
 async def read_root(request: Request):
     return templates.TemplateResponse("root.html", {"request": request})
+
+@app.get("/main", response_class=HTMLResponse)
+async def main(request: Request):
+    return templates.TemplateResponse("index.html", {"request": request})
 
 @app.get("/items/{item_id}", response_class=HTMLResponse)                          #http://127.0.0.1:8080/items/5?q=example
 async def read_item(request: Request, item_id: int, q: Union[str, None] = None):

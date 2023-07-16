@@ -1,40 +1,54 @@
-var urlParams;
-(window.onpopstate = function () {
-    var match,
-        pl     = /\+/g,  // Regex for replacing addition symbol with a space
-        search = /([^&=]+)=?([^&]*)/g,
-        decode = function (s) { return decodeURIComponent(s.replace(pl, " ")); },
-        query  = window.location.search.substring(1);
+/*!
+* Start Bootstrap - Grayscale v7.0.6 (https://startbootstrap.com/theme/grayscale)
+* Copyright 2013-2023 Start Bootstrap
+* Licensed under MIT (https://github.com/StartBootstrap/startbootstrap-grayscale/blob/master/LICENSE)
+*/
+//
+// Scripts
+// 
 
-    urlParams = {};
-    while (match = search.exec(query))
-    urlParams[decode(match[1])] = decode(match[2]);
-})();
+window.addEventListener('DOMContentLoaded', event => {
 
-function myFunction(q = 0) {
-    //window.alert((q).toString())
-    const a = urlParams['q']
-    if (a) {
-        document.getElementById("demo").innerHTML = a * a;
-    }
-    else {
-        document.getElementById("demo").innerHTML = myFunction.name;
-    }
-}
+    // Navbar shrink function
+    var navbarShrink = function () {
+        const navbarCollapsible = document.body.querySelector('#mainNav');
+        if (!navbarCollapsible) {
+            return;
+        }
+        if (window.scrollY === 0) {
+            navbarCollapsible.classList.remove('navbar-shrink')
+        } else {
+            navbarCollapsible.classList.add('navbar-shrink')
+        }
 
-function reset() {
-    document.getElementById("demo").innerHTML = reset.name;
-}
+    };
 
-function get_from_input() {
-    fname = document.getElementById('fname').value
-    lname = document.getElementById('lname').value
-    if (!fname){
-        fname = 'Input your fname'
-    }
-    if (!lname){
-        lname = 'Input your lname'
-    }
-    document.getElementById("fname_out").innerHTML = fname
-    document.getElementById("lname_out").innerHTML = lname
-}
+    // Shrink the navbar 
+    navbarShrink();
+
+    // Shrink the navbar when page is scrolled
+    document.addEventListener('scroll', navbarShrink);
+
+    // Activate Bootstrap scrollspy on the main nav element
+    const mainNav = document.body.querySelector('#mainNav');
+    if (mainNav) {
+        new bootstrap.ScrollSpy(document.body, {
+            target: '#mainNav',
+            rootMargin: '0px 0px -40%',
+        });
+    };
+
+    // Collapse responsive navbar when toggler is visible
+    const navbarToggler = document.body.querySelector('.navbar-toggler');
+    const responsiveNavItems = [].slice.call(
+        document.querySelectorAll('#navbarResponsive .nav-link')
+    );
+    responsiveNavItems.map(function (responsiveNavItem) {
+        responsiveNavItem.addEventListener('click', () => {
+            if (window.getComputedStyle(navbarToggler).display !== 'none') {
+                navbarToggler.click();
+            }
+        });
+    });
+
+});
