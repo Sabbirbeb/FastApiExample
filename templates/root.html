@@ -1,0 +1,19 @@
+<html>
+    <head>
+        <title>Root html</title>
+        <link href="{{ url_for('static', path='/styles.css') }}" rel="stylesheet">
+        <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+        <meta http-equiv="Pragma" content="no-cache" />
+        <meta http-equiv="Expires" content="0" />
+
+    </head>
+    <body>
+        <h2>Absolute URLs</h2>
+        <p><a href="http://89.108.77.24:8080">89.108.77.24</a></p>
+        <p><a href="https://www.google.com/">Google</a></p>
+        
+        <h2>Relative URLs</h2>
+        <p><a href="/items/5?q=13">/items/5 q=13</a></p>
+        <p><a href="/items/189">/items/189</a></p>
+    </body>
+</html>

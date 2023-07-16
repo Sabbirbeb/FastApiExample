@@ -17,9 +17,9 @@ class Item(BaseModel):
     price: float = 0.0
     is_in_offer: Union[bool, None] = None
 
-@app.get("/")
-async def read_root():
-    return {"Hello": "World"}
+@app.get("/", response_class=HTMLResponse)
+async def read_root(request: Request):
+    return templates.TemplateResponse("root.html", {"request": request})
 
 @app.get("/items/{item_id}", response_class=HTMLResponse)                          #http://127.0.0.1:8080/items/5?q=example
 async def read_item(request: Request, item_id: int, q: Union[str, None] = None):
