@@ -34,10 +34,10 @@ function get_from_input() {
     fname = document.getElementById('fname').value
     lname = document.getElementById('lname').value
     if (onlyLettersAndNumbers(fname)){
-        fname = 'Input your fname. It must contain only letters!'
+        fname = 'Input your fname. It must contain only RU letters!'
     }
     if (onlyLettersAndNumbers(lname)){
-        lname = 'Input your lname. It must contain only letters!'
+        lname = 'Input your lname. It must contain only RU letters!'
     }
     document.getElementById("fname_out").innerHTML = fname
     document.getElementById("lname_out").innerHTML = lname
