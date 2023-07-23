@@ -20,15 +20,37 @@ class Item(BaseModel):
 
 @app.get("/", response_class=HTMLResponse)
 async def read_root(request: Request):
+    """
+    read_root async function.
+
+    :param response_class: class of response 
+    :return: root navigation page
+    """ 
     return templates.TemplateResponse("root.html", {"request": request})
 
 @app.get("/main", response_class=HTMLResponse)
 async def main(request: Request):
+    """
+    main async function.
+
+    :param response_class: class of response 
+    :return: main page with (bootstrap)
+    """ 
     return templates.TemplateResponse("index.html", {"request": request})
 
-@app.get("/items/{item_id}", response_class=HTMLResponse)                          #http://127.0.0.1:8080/items/5?q=example
+@app.get("/items/{item_id}", response_class=HTMLResponse)
 async def read_item(request: Request, item_id: int, q: Union[str, None] = None):
+    """
+    read_item async function.
+
+    :param response_class: class of response 
+    :param item_id: path parameter item id
+    :param q: query parameter means nothing 
+    :return: item page (html+css+js)
+    """ 
     return templates.TemplateResponse("item.html", {"request": request, "item_id": item_id, "q": q})
+
+
 
 @app.put("/items/{item_name}")
 async def update_item(item_id: int, item: Item):
