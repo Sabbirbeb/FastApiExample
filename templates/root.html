@@ -1,7 +1,7 @@
 <html>
     <head>
         <title>Root html</title>
-        <link href="{{ url_for('static', path='/styles.css') }}" rel="stylesheet">
+        <link href="{{ url_for('static', path='/my_styles.css') }}" rel="stylesheet">
         <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
         <meta http-equiv="Pragma" content="no-cache" />
         <meta http-equiv="Expires" content="0" />
@@ -9,12 +9,14 @@
     </head>
     <body>
         <h2>Absolute URLs</h2>
-        <p><a href="http://89.108.77.24:8080">89.108.77.24</a></p>
-        <p><a href="https://www.google.com/">Google</a></p>
-        
+        <ul><li><a href="http://89.108.77.24:8080">89.108.77.24:8080</a></li></ul>
+        <ul><li><a href="https://www.ya.ru/">Ya</a></li></ul>
+        <ul><li><a href="https://t.me/gudymm">t.me</a></li></ul>
+
         <h2>Relative URLs</h2>
-        <p><a href="/main"> Main page </a></p>
-        <p><a href="/items/5?q=13">/items/5 q=13</a></p>
-        <p><a href="/items/189">/items/189</a></p>
+        <ul><li><a href="/main">Main</a></li></ul>
+        <ul><li><a href="/items/5?q=15">/items/ + path and query params</a></li></ul>
+        <ul><li><a href="/items/189">/items/ + path param</a></li></ul>
+
     </body>
 </html>

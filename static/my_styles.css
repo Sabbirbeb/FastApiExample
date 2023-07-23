@@ -1,27 +1,57 @@
+
+html, body {height:100%;}
+html {display:table; width:100%;}
+body {display:table-cell; text-align:center; vertical-align:middle;}
+
 h1 {
     color: rgb(109, 51, 71);
 }
 
 button {
-    color: crimson;
+    color: deeppink;
     height: 40px;
     width: 75px;
 }
 
-p {
-    animation-duration: 3s;
-    animation-name: slidein;
-    color: deeppink;
-  }
-  
-  @keyframes slidein {
-    from {
-      margin-left: 100%;
-      width: 300%;
-    }
-  
-    to {
-      margin-left: 0%;
-      width: 100%;
-    }
-  }
+p 
+{
+  color: deeppink;
+}
+
+
+ul {
+  padding: 0;
+  width: 100%;
+}
+
+li {
+  display: inline;
+}
+
+li:last-child a {
+  margin-right: 0;
+}
+
+a {
+  outline: none;
+  text-decoration: none;
+  display: inline-block;
+  width: 19.5%;
+  margin-right: 0.625%;
+  text-align: center;
+  line-height: 3;
+  color: black;
+}
+
+a:link, a:visited, a:focus {
+  background: yellow;
+}
+
+a:hover {
+  background: orange;
+}
+
+a:active {
+  background: red;
+  color: white;
+}

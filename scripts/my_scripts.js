@@ -22,6 +22,10 @@ function myFunction(q = 0) {
     }
 }
 
+function onlyLettersAndNumbers(str) {
+    return /^[A-Za-z0-9]*$/.test(str);
+}
+
 function reset() {
     document.getElementById("demo").innerHTML = reset.name;
 }
@@ -29,11 +33,11 @@ function reset() {
 function get_from_input() {
     fname = document.getElementById('fname').value
     lname = document.getElementById('lname').value
-    if (!fname){
-        fname = 'Input your fname'
+    if (onlyLettersAndNumbers(fname)){
+        fname = 'Input your fname. It must contain only letters!'
     }
-    if (!lname){
-        lname = 'Input your lname'
+    if (onlyLettersAndNumbers(lname)){
+        lname = 'Input your lname. It must contain only letters!'
     }
     document.getElementById("fname_out").innerHTML = fname
     document.getElementById("lname_out").innerHTML = lname
