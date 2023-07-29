@@ -7,6 +7,13 @@ docker run testt
 docker container rm mycontainer -f 
 
 
+
+https://www.atlantic.net/dedicated-server-hosting/how-to-deploy-and-run-redis-in-docker/
+
+
 docker pull redis:latest 
 docker run --name redis-instance -dit redis
-set queue key aaaaaa
+docker exec -it redis-instance /bin/bash
+redis-cli
+
+set key aaaaaa
