@@ -1,9 +1,15 @@
 from typing import Annotated
+
 from fastapi import FastAPI, Request, Path
-from fastapi.responses import HTMLResponse, FileResponse
+from fastapi.responses import HTMLResponse, FileResponse, RedirectResponse
+from fastapi.exceptions import RequestErrorModel
 from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
+
 from pydantic import BaseModel
+import requests
+
+from app.linker import set_link_from_redis, get_link_from_redis
 
 app = FastAPI()
 
@@ -59,6 +65,39 @@ async def read_item(
     """ 
     return templates.TemplateResponse("item.html", {"request": request, "item_id": item_id, "q": q})
 
+@app.get("/link/{link}", response_class=RedirectResponse)
+async def link(
+    request: Request,
+    link: Annotated[str, Path(title='Your cutted link')]):
+    """
+    async function get link by key from redis.
+
+    :param response_class: class of response 
+    :return: redirect to link or None
+    """ 
+    URL = await get_link_from_redis(link)
+    return URL
+
+@app.get("/set_link", response_class=HTMLResponse)
+async def set_link(
+    request: Request,
+    link: str):
+    """
+    async function to set link for key to redis.
+
+    :param response_class: class of response 
+    :return: key
+    """ 
+    try:
+        if requests.get(link).status_code == 200:
+            url = await set_link_from_redis(link)
+            if url:
+                return templates.TemplateResponse("linker.html", {"request": request, "value": url})
+            return url
+    except Exception as e:
+        # return ValueError('That link does not work!', e)
+        return templates.TemplateResponse("root.html", {"request": request})
+    
 @app.put("/items/{item_name}")
 async def update_item(item_id: int, item: Item):
     return {"Item_name": item.name, "Item_price": item.price}
