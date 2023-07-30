@@ -86,7 +86,10 @@ async def link(
     :return: redirect to link or None
     """ 
     URL = await get_link_from_redis(link)
-    return URL
+    if URL.startswith('http'):
+        return URL
+    else:
+        return ('/')
 
 @app.get("/set_link", response_class=HTMLResponse)
 async def set_link(
