@@ -12,7 +12,7 @@ https://www.atlantic.net/dedicated-server-hosting/how-to-deploy-and-run-redis-in
 
 
 docker pull redis:latest 
-docker run --name redis-instance -dit redis
+docker run --net host --name redis-instance -dit redis
 docker exec -it redis-instance /bin/bash
 redis-cli
 

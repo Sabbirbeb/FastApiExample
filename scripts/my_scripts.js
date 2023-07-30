@@ -42,3 +42,14 @@ function get_from_input() {
     document.getElementById("fname_out").innerHTML = fname
     document.getElementById("lname_out").innerHTML = lname
 }
+
+function link_shorter_input(){
+    inputUrl = document.getElementById('urlToShorten').value
+    apiKey   = '/set_link?link=' + inputUrl
+    if (inputUrl) {
+        window.location.replace(apiKey);
+    }
+    else {
+        alert ('Please enter URL for shortening!')
+    }
+}

@@ -65,10 +65,20 @@ async def read_item(
     """ 
     return templates.TemplateResponse("item.html", {"request": request, "item_id": item_id, "q": q})
 
-@app.get("/link/{link}", response_class=RedirectResponse)
+@app.get("/create_link", response_class=HTMLResponse)
+async def create_link(request: Request):
+    """
+    main async function.
+
+    :param response_class: class of response 
+    :return: main page with (bootstrap)
+    """ 
+    return templates.TemplateResponse("linker_input.html", {"request": request})
+
+@app.get("/link/", response_class=RedirectResponse)
 async def link(
     request: Request,
-    link: Annotated[str, Path(title='Your cutted link')]):
+    link: str):
     """
     async function get link by key from redis.
 
@@ -89,11 +99,10 @@ async def set_link(
     :return: key
     """ 
     try:
-        if requests.get(link).status_code == 200:
-            url = await set_link_from_redis(link)
-            if url:
-                return templates.TemplateResponse("linker.html", {"request": request, "value": url})
-            return url
+        url = await set_link_from_redis(link)
+        if url:
+            return templates.TemplateResponse("linker_output.html", {"request": request, "value": url})
+        return url
     except Exception as e:
         # return ValueError('That link does not work!', e)
         return templates.TemplateResponse("root.html", {"request": request})
